@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>App Hub</title>
+<meta name="theme-color" content="#3f3fd8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="App Hub">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%233f3fd8'/%3E%3Cg fill='%23fff'%3E%3Crect x='22' y='22' width='24' height='24' rx='6'/%3E%3Crect x='54' y='22' width='24' height='24' rx='6'/%3E%3Crect x='22' y='54' width='24' height='24' rx='6'/%3E%3Crect x='54' y='54' width='24' height='24' rx='6'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f5f6fa; --card:#ffffff; --card-2:#eef0f7; --line:#dcdfeb;
+  --text:#1a1c27; --muted:#666c85; --accent:#3f3fd8; --accent-soft:#e7e7fb;
+  --shadow:0 1px 2px rgba(26,28,39,.05), 0 6px 20px rgba(26,28,39,.06);
+  --radius:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#13141b; --card:#1b1d27; --card-2:#232635; --line:#31344a;
+    --text:#e8eaf2; --muted:#9aa0b8; --accent:#8b8bff; --accent-soft:#262a49;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 6px 20px rgba(0,0,0,.3);
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.65; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:980px; margin:0 auto; padding:28px 18px 60px}
+
+header{display:flex; align-items:center; gap:14px; margin-bottom:22px}
+.mark{width:44px;height:44px;border-radius:12px;background:var(--accent);display:grid;place-items:center;flex:none}
+.mark span{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.mark i{width:8px;height:8px;border-radius:2px;background:#fff;display:block}
+h1{font-size:21px; margin:0; letter-spacing:.01em}
+.sub{color:var(--muted); font-size:13px}
+
+.bar{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:18px}
+.chips{display:flex; gap:7px; flex-wrap:wrap}
+.chip{
+  border:1px solid var(--line); background:var(--card); color:inherit;
+  border-radius:999px; padding:7px 14px; font:inherit; font-size:13px; cursor:pointer;
+  transition:.12s; min-height:36px;
+}
+.chip:hover{border-color:var(--accent); color:var(--accent)}
+.chip.on{background:var(--accent); border-color:var(--accent); color:#fff}
+.chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.search{flex:1 1 200px; min-width:180px}
+.search input{
+  width:100%; font:inherit; font-size:16px; color:inherit;
+  background:var(--card); border:1px solid var(--line); border-radius:10px; padding:9px 12px;
+}
+.search input:focus{outline:2px solid var(--accent-soft); border-color:var(--accent)}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px}
+.card{
+  display:flex; gap:13px; align-items:flex-start;
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow); padding:16px; text-decoration:none; color:inherit;
+  transition:transform .12s, border-color .12s, box-shadow .12s;
+}
+.card:hover{transform:translateY(-2px); border-color:var(--accent); box-shadow:0 4px 10px rgba(26,28,39,.08), 0 14px 34px rgba(26,28,39,.10)}
+.card:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.ico{
+  width:44px;height:44px;flex:none;border-radius:11px;background:var(--card-2);
+  display:grid;place-items:center;font-size:22px;line-height:1;
+}
+.body{min-width:0}
+.name{font-weight:600; font-size:15.5px; margin:0 0 3px; display:flex; align-items:center; gap:7px}
+.name .arrow{color:var(--muted); font-size:13px; opacity:0; transition:.12s}
+.card:hover .name .arrow{opacity:1; color:var(--accent)}
+.desc{color:var(--muted); font-size:13px; margin:0 0 8px}
+.tag{
+  display:inline-block; font-size:11px; letter-spacing:.04em;
+  background:var(--accent-soft); color:var(--accent);
+  border-radius:5px; padding:2px 8px;
+}
+@media (prefers-color-scheme:dark){ .tag{color:#c3c3ff} }
+
+.empty{grid-column:1/-1; text-align:center; color:var(--muted); padding:48px 12px; font-size:14px}
+footer{margin-top:34px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; line-height:1.8}
+code{background:var(--card-2); border-radius:4px; padding:1px 6px; font-size:12px}
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} .card:hover{transform:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="mark"><span><i></i><i></i><i></i><i></i></span></div>
+    <div>
+      <h1>App Hub</h1>
+      <div class="sub">自作アプリの入口。カードを押すとそのアプリが開きます</div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="chips" id="chips"></div>
+    <div class="search"><input id="q" type="search" placeholder="アプリを検索" aria-label="アプリを検索"></div>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <footer>
+    カードを増やすときは <code>apps.js</code> に1件足すだけです（表示名・説明・公開URL・絵文字・タグ）。<br>
+    このページはGitHub Pagesに置いてあるので、PCのファイルが消えても失われません。スマホからも同じURLで開けます。
+  </footer>
+
+</div>
+
+<script src="apps.js"></script>
+<script>
+(function(){
+  'use strict';
+  var grid = document.getElementById('grid');
+  var chipsEl = document.getElementById('chips');
+  var q = document.getElementById('q');
+  var filter = 'すべて';
+  var query = '';
+
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+    });
+  }
+
+  var tags = ['すべて'];
+  APPS.forEach(function(a){ if (tags.indexOf(a.tag) === -1) tags.push(a.tag); });
+
+  function renderChips(){
+    chipsEl.innerHTML = tags.map(function(t){
+      return '<button class="chip' + (t === filter ? ' on' : '') + '" data-t="' + esc(t) + '">' + esc(t) + '</button>';
+    }).join('');
+  }
+
+  function visible(a){
+    if (filter !== 'すべて' && a.tag !== filter) return false;
+    if (!query) return true;
+    return (a.name + ' ' + a.desc + ' ' + a.tag).toLowerCase().indexOf(query) !== -1;
+  }
+
+  function render(){
+    var list = APPS.filter(visible);
+    if (!list.length){
+      grid.innerHTML = '<div class="empty">該当するアプリはありません。</div>';
+      return;
+    }
+    grid.innerHTML = list.map(function(a){
+      return '<a class="card" href="' + esc(a.url) + '" target="_blank" rel="noopener">'
+        + '<div class="ico" aria-hidden="true">' + esc(a.icon || '📦') + '</div>'
+        + '<div class="body">'
+        +   '<p class="name">' + esc(a.name) + '<span class="arrow" aria-hidden="true">↗</span></p>'
+        +   '<p class="desc">' + esc(a.desc) + '</p>'
+        +   '<span class="tag">' + esc(a.tag) + '</span>'
+        + '</div></a>';
+    }).join('');
+  }
+
+  chipsEl.addEventListener('click', function(e){
+    var t = e.target.getAttribute('data-t');
+    if (!t) return;
+    filter = t;
+    renderChips(); render();
+  });
+  q.addEventListener('input', function(){
+    query = this.value.trim().toLowerCase();
+    render();
+  });
+
+  renderChips();
+  render();
+})();
+</script>
+</body>
+</html>
