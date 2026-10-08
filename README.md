@@ -46,7 +46,6 @@ https://01hojo10-creator.github.io/app-hub/
 | 会議レコーダー | https://01hojo10-creator.github.io/kaigi-recorder/ |
 | もぐサポ君 | https://01hojo10-creator.github.io/mogu-sapo-kun/ |
 | シンプルToDo | https://nextjs-simple-todo-ja.vercel.app/ |
-| Masaki Trade System | https://01hojo10-creator.github.io/masaki-trade-system/ |
 | あそびのにわ | https://01hojo10-creator.github.io/asobi-niwa/ |
 | はなごよみ | https://01hojo10-creator.github.io/hanagoyomi/ |
 | 草刈り代行LP | https://01hojo10-creator.github.io/kusakari-hp/ |
