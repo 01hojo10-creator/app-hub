@@ -43,6 +43,13 @@ const APPS = [
     tag:  "仕事"
   },
   {
+    name: "Masaki Trade System",
+    desc: "相場レーダーとニュース要約。5分・15分・日足のシグナルを表示",
+    url:  "https://01hojo10-creator.github.io/masaki-trade-system/",
+    icon: "📈",
+    tag:  "投資"
+  },
+  {
     name: "あそびのにわ",
     desc: "ピアノ・おえかき・レース・かたちあわせ。子ども向けミニゲーム集",
     url:  "https://01hojo10-creator.github.io/asobi-niwa/",
