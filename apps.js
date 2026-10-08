@@ -12,6 +12,16 @@
 
 const APPS = [
   {
+    name: "相場分析ラボ",
+    desc: "チャートとニュース・開示から、買い候補や注目テーマを確認",
+    url: "mhub-marketlab://open",
+    icon: "🔎",
+    iconSrc: "assets/market-lab.png",
+    tag: "投資",
+    local: true
+  },
+
+  {
     name: "会議レコーダー",
     desc: "録音しながら文字起こし。議事録・グラレコの素材に整えて出力",
     url:  "https://01hojo10-creator.github.io/kaigi-recorder/",

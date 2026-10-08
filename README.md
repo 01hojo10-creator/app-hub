@@ -52,3 +52,11 @@ https://01hojo10-creator.github.io/app-hub/
 | 草刈り代行LP | https://01hojo10-creator.github.io/kusakari-hp/ |
 
 未登録：`fundaapp-mobile-news`（Pythonアプリで公開URLがないため）
+
+
+## 相場分析ラボ
+
+- 「投資」にPC専用カードを追加。`mhub-marketlab://open` で登録済みWindows PCのローカルアプリを起動します。
+- 専用アイコンは `assets/market-lab.png`。`iconSrc` にこのフォルダー内のPNGを指定でき、既存の絵文字アイコンも使用できます。
+- 起動登録は相場分析ラボ内の `Register-AppHub.ps1`。アプリと株価・ニュースデータは公開していません。
+- スマートフォンではPC専用の案内を表示し、外部起動しません。
